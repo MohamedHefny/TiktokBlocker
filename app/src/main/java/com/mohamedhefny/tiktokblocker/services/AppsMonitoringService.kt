@@ -2,9 +2,11 @@ package com.mohamedhefny.tiktokblocker.services
 
 import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
+import android.content.Intent
 import android.util.Log
 import android.view.KeyEvent
 import android.view.accessibility.AccessibilityEvent
+import com.mohamedhefny.tiktokblocker.MainActivity
 import com.mohamedhefny.tiktokblocker.R
 
 class AppsMonitoringService : AccessibilityService() {
@@ -29,7 +31,19 @@ class AppsMonitoringService : AccessibilityService() {
         if (event?.packageName != tiktokPackageName)
             return
 
-        performGlobalAction(GLOBAL_ACTION_BACK)
+        val isBackPerformed = when (event.className) {
+            "android.widget.FrameLayout" ->
+                performGlobalAction(GLOBAL_ACTION_BACK)
+            "com.ss.android.ugc.aweme.main.MainActivity" ->
+                performGlobalAction(GLOBAL_ACTION_BACK) && performGlobalAction(GLOBAL_ACTION_BACK)
+            else -> false
+        }
+
+        if (isBackPerformed) {
+            Intent(this, MainActivity::class.java)
+                .apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK }
+                .also { startActivity(it) }
+        }
     }
 
     override fun onKeyEvent(event: KeyEvent?): Boolean {
