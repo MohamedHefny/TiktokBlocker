@@ -28,6 +28,8 @@ class AppsMonitoringService : AccessibilityService() {
 
         if (event?.packageName != tiktokPackageName)
             return
+
+        performGlobalAction(GLOBAL_ACTION_BACK)
     }
 
     override fun onKeyEvent(event: KeyEvent?): Boolean {
