@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TiktokBlocker</string>
+    <string name="tiktok_package_name" translatable="false">com.zhiliaoapp.musically</string>
 </resources>
