@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TiktokBlocker</string>
     <string name="tiktok_package_name" translatable="false">com.zhiliaoapp.musically</string>
+
+    <!--Global strings-->
+    <string name="ok">OK</string>
+
+    <string name="app_blocked_msg">The app you are trying to open is blocked</string>
 </resources>
